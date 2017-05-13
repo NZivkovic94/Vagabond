@@ -3,5 +3,7 @@ export class Message {
 	MessageText: string;
 	Lat: number;
 	Lng: number;
+	LikesNum: number;
+	DislikeNum: number;
 	messageCategory: number;
 }
