@@ -23,9 +23,18 @@
         <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
         <button class="btn btn-outline-success my-2 my-sm-0" onclick="filterMarkers()">Search</button>
         <button class="btn btn-outline-info my-2 my-sm-0" onclick="Login()">Login with Facebook</button>
-        <button class="btn btn-outline-info my-2 my-sm-0" onclick="geoFindMe()">Get Location</button>
+
+        <!-- Example split danger button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger" onclick="geoFindMe()">Get Location</button>
+          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+              <div id="out"></div>
+          </div>
+        </div>
     </div>
-    <div id="out"></div>
   </nav>
   <div id="map"></div>
   <script src="init-map.js"></script>
