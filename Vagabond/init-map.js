@@ -1,7 +1,8 @@
 var markers = [];
 var markerCluster;
+var map;
 function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 13,
 		center: { lat: 44.817, lng: 20.467 },
 		styles: [
