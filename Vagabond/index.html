@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Vagabond</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <a class="navbar-brand" href="#">Vagabond</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="filterMarkers()">Search</button>
+        <button class="btn btn-outline-info my-2 my-sm-0" onclick="Login()">Login with Facebook</button>
+        <button class="btn btn-outline-info my-2 my-sm-0" onclick="geoFindMe()">Get Location</button>
+    </div>
+    <div id="out"></div>
+  </nav>
+  <div id="map"></div>
+  <script src="init-map.js"></script>
+  <script>
+    function filterMarkers(){
+
+          var search = document.getElementById("search");
+          $.each(markers, function(i, marker) {
+          // replace apple with particular category
+          if(!marker.desc.includes(search.value))
+              marker.setVisible(false);
+          else
+              marker.setVisible(true);
+      });
+      markerCluster.resetViewport();
+    }
+  </script>
+  <script src="marker-service.js"></script>
+  <script src="markerclusterer.js">
+    </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXOmIBnc5EcO1I365z9yAXcB7VhJgxpjA">
+    </script>
+  <script src="oms.min.js"></script>
+  <script>
+      var locations = [];
+      var messages = [];
+
+      window.onload = function(){
+        getJSON("http://mathackwebapitemplate20170512092055.azurewebsites.net/api/Messages", function(err, data) {
+            if (err != null) {
+              alert('Something went wrong: ' + err);
+            } else {
+              for(var i = 0; i < data.length; i++){
+                locations.push({lat: data[i].Lat, lng: data[i].Lng});
+                messages.push(data[i]);
+              }
+            }
+            initMap();
+        });
+      }
+    </script>
+  <script>
+    function geoFindMe() {
+        var output = document.getElementById("out");
+
+        if (!navigator.geolocation){
+          output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+          return;
+        }
+
+        function success(position) {
+          var latitude  = position.coords.latitude;
+          var longitude = position.coords.longitude;
+
+          output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+          var img = new Image();
+          img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+          output.appendChild(img);
+        }
+
+        function error() {
+          output.innerHTML = "Unable to retrieve your location";
+        }
+
+        output.innerHTML = "<p>Locating…</p>";
+
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+      </script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+  <script src="fb.js"></script>
+</body>
+
+</html>
