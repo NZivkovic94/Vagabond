@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=alhime.database.windows.net;Initial Catalog=MatHackathonDb;Integrated Security=False;User ID=alhimeadmin;Password=sifra123!;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Ja\\Documents\\Visual\ Studio\ 2017\\Projects\\MatHackWebApiTemplate\\MatHackWebApiTemplate\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="MatHackWebApiTemplateContext-Web.config Connection String" description="MatHackWebApiTemplateContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=MatHackWebApiTemplateContext-20170512210218; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|MatHackWebApiTemplateContext-20170512210218.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Ja\\Documents\\Visual\ Studio\ 2017\\Projects\\MatHackWebApiTemplate\\MatHackWebApiTemplate\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MatHackWebApiTemplateContext']/@connectionString" />
+  </parameter>
+</parameters>
